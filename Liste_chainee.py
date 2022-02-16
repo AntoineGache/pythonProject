@@ -73,6 +73,81 @@ class ListeChainee:
         else:
             raise Exception("pas assez de maillons !")
 
+    def k_ieme_element_distint(self,k):
+        compteur = 0
+        precedent = None
+        maillon = self.premier
+
+        while maillon is not None and compteur < k:
+            if maillon.valeur != precedent:
+                compteur += 1
+
+            precedent = maillon.valeur
+            maillon = maillon.suivant
+
+        return precedent
+
+    def comparaison(self,x):
+        maillon = self.premier
+        while maillon is not None:
+            if maillon.valeur == x:
+                return True
+            maillon = maillon.suivant
+
+        return False
+
+    def comparaison_croissante(self,x):
+        maillon = self.premier
+        while maillon is not None:
+            if maillon.valeur == x:
+                return True
+            if x < maillon.valeur:
+                print("Valeur dépassé, ", end="")
+                return False
+            maillon = maillon.suivant
+
+        return False
+
+    def nb_element_distint(self):
+
+        compteur = 0
+        maillon = self.premier
+        precedent = None
+
+        while maillon is not None:
+            if maillon.valeur != precedent:
+                compteur += 1
+            precedent = maillon.valeur
+            maillon = maillon.suivant
+
+        return compteur
+
+    def liste_element_distint(self):
+        listeDistint = ListeChainee(None)
+
+        if self.premier is None:
+            return listeDistint
+
+        listeDistint.premier = Maillon(self.premier.valeur, None)
+        precedent = self.premier.valeur
+
+        maillon = self.premier.suivant
+        dernier_cree = listeDistint.premier
+
+        while maillon is not None:
+            if maillon.valeur != precedent:
+                copie = Maillon(maillon.valeur,None)
+                dernier_cree.suivant = copie
+                dernier_cree = dernier_cree.suivant
+                precedent = maillon.valeur
+
+            maillon = maillon.suivant
+
+        return listeDistint
+
+    def liste_element_distint_remplacement(self):
+
+
 class Maillon:
     def __init__(self, val, suiv):
         self.valeur = val
