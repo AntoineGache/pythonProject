@@ -62,6 +62,17 @@ class ListeChainee:
 
             return self
 
+    def k_ieme_element(self,k):
+        compteur = 1
+        maillon = self.premier
+        while compteur < k and maillon:
+            compteur += 1
+            maillon = maillon.suivant
+        if maillon:
+            return maillon.valeur
+        else:
+            raise Exception("pas assez de maillons !")
+
 class Maillon:
     def __init__(self, val, suiv):
         self.valeur = val

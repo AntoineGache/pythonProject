@@ -12,3 +12,5 @@ if __name__ == '__main__':
     liste.affichage_liste()
     liste.inverse()
     print(liste.affichage_liste())
+
+    print(liste.k_ieme_element(3))
